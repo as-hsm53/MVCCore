@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewData["Title"] = "Orders";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Orders</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+        </a>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <div class="col-xl-12 col-md-6 col-12 card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Total Orders</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Full Name</th>
+                                <th>Address</th>
+                                <th>Phone Number</th>
+                                <th>Pants</th>
+                                <th>Shirts</th>
+                                @*<th>Invoice Type</th>*@
+                                <th>Comments </th>
+                                <th>Total Price</th>
+                                <th>Status</th>
+                                <th>Invoice</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Full Name</th>
+                                <th>Address</th>
+                                <th>Phone Number</th>
+                                <th>Pants</th>
+                                <th>Shirts</th>
+                                @*<th>Invoice Type</th>*@
+                                <th>Comments </th>
+                                <th>Total Price</th>
+                                <th>Status</th>
+                                <th>Invoice</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Order.Id</td>
+                                    <td>@item.User.FirstName @item.User.LastName</td>
+                                    <td>@item.User.Address</td>
+                                    <td>@item.User.PhoneNumber</td>
+                                    <td>@item.Order.Pants</td>
+                                    <td>@item.Order.Shirts</td>
+                                    @*@if (@item.Order.InvoiceType == "1")
+                                    {
+                                        <td><a class="btn btn-warning">Price Wise</a></td>
+                                    }
+                                    @if (@item.Order.InvoiceType == "2")
+                                    {
+                                        <td><a class="btn btn-Prmiary">Weight Wise</a></td>
+                                    }
+                                    @if (@item.Order.InvoiceType == "3")
+                                    {
+                                        <td><a class="btn btn-info">Package Wise</a></td>
+                                    }*@
+                                    <td>@item.Order.Comments</td>
+                                    <td>@item.Order.TotalPrice Pkr</td>
+                                    @if (@item.Order.Status == 0)
+                                    {
+                                        <td><a class="btn btn-warning" href="@Url.Action("UpdateStatus", "Orders", new { id = item.Order.Id })" data-toggle="modal" data-target="#statusModal">Pending</a></td>
+                                    }
+                                    @if (@item.Order.Status == 1)
+                                    {
+                                        <td><a class="btn btn-success">Completed</a></td>
+                                    }
+                                    @if (@item.Order.Status == 2)
+                                    {
+                                        <td><a class="btn btn-danger">Canceled</a></td>
+                                    }
+                                    <td>
+                                        <form method="post" action="@Url.Action("GenerateInvoice", "Admin")">
+                                            <input type="hidden" name="orderId" value="@item.Order.Id" />
+                                            <button type="submit" class="btn btn-primary">Generate Invoice</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

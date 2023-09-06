@@ -1,0 +1,242 @@
+﻿@model MyFirstMVC.Models.Order
+@inject IHttpContextAccessor contextAccessor;
+@{
+    ViewData["Title"] = "Create";
+}
+
+<section class="inner-banner flex-center" style="background-image: url('img/bg/cleanitems.jpg');">
+    <div class="container">
+        <div class="row z-5 mt-85 align-items-center">
+            <div class="col-lg-7 text-center text-lg-left">
+                <h1 class="blue">Cost Calculator</h1>
+            </div>
+            <div class="col-lg-5 text-center text-lg-right">
+                <ul class="inner-bnr-nav">
+                    <li>
+                        <a href="#">Home </a>
+                    </li>
+                    <li>Cost Calculator</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- inner banner end -->
+@if (TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Message"]
+    </div>
+}
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Message
+    </div>
+}
+<!-- calculator start -->
+<section class="cost-calculator pt-90 pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-lg-5">
+                <div class="right-box bg-blue mb-30">
+                    <ul class="contacts-list blue-contacts">
+                        <li class="mb-15">
+                            <span class="icon"><i class="fas fa-phone blue"></i></span>
+                            <span class="sub-head">Call Us Now</span>
+                            <p>+123 456 7890</p>
+                        </li>
+                        <li>
+                            <span class="icon"><i class="fas fa-envelope blue"></i></span>
+                            <span class="sub-head">Send Us a Mail</span>
+                            <p>info@example.com</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right-box bg-blue mb-30">
+                    <div class="right-box-content">
+                        <ul class="check-list">
+                            <li><span><i class="fas fa-check"></i></span>Cost Effective</li>
+                            <li><span><i class="fas fa-check"></i></span>Insured and Bonded</li>
+                            <li><span><i class="fas fa-check"></i></span>100% Satisfaction </li>
+                            <li><span><i class="fas fa-check"></i></span>Quality Services</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right-box bg-light-white mb-30">
+                    <div class="right-box-head">
+                        <h4 class="fs-22">Search</h4>
+                    </div>
+                    <div class="right-box-content">
+                        <form action="#" class="relative mt-10 mb-10">
+                            <input type="text" class="form-control input-white search-white" id="search2" placeholder="Search here..">
+                            <i class="fas fa-search transform-v-center blue"></i>
+                        </form>
+                    </div>
+                </div>
+                <div class="right-box bg-light-white mb-30">
+                    <div class="right-box-head">
+                        <h4 class="fs-22">Follow Us</h4>
+                    </div>
+                    <div class="right-box-content">
+                        <div class="social-profile mt-10 mb-10">
+                            <a href="#" class="social-profile-box">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-profile-box">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-profile-box">
+                                <i class="fab fa-google-plus-g"></i>
+                            </a>
+                            <a href="#" class="social-profile-box">
+                                <i class="fab fa-pinterest-p"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-7">
+                <div class="calculation">
+                    <h3 class="f-700 fs-30 mb-10">Calculate Your Cost</h3>
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 d-none">
+                                <div class="form-group bg-info text-light rounded">
+                                    <label asp-for="UserID" class="control-label">Shirts Quantity</label>
+                                    <input asp-for="UserID" class="form-control input-white" value="@contextAccessor.HttpContext.Session.GetInt32("ID")" />
+                                    <span asp-validation-for="UserID" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group bg-info text-light rounded">
+                                    <label asp-for="Shirts" class="control-label">Shirts Quantity</label>
+                                    <input asp-for="Shirts" class="form-control input-white" id="Shirts"/>
+                                    <span asp-validation-for="Shirts" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group bg-info text-light rounded">
+                                    <label asp-for="Pants" class="control-label">Pants Quantity</label>
+                                    <input asp-for="Pants" class="form-control input-white" id="Pants"/>
+                                    <span asp-validation-for="Pants" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group bg-info text-light rounded">
+                                    <label asp-for="InvoiceType" class="control-label">Invoice Type</label>
+                                    <select asp-for="InvoiceType" class="form-control input-white">
+                                        <option value="1">Price Wise</option>
+                                        <option value="2">Weight Wise</option>
+                                        <option value="3">Package Wise</option>
+                                    </select>
+                                    <span asp-validation-for="InvoiceType" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="form-group bg-info text-light rounded">
+                                    <label asp-for="Comments" class="control-label"></label>
+                                    <input asp-for="Comments" class="form-control input-white" />
+                                    <span asp-validation-for="Comments" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-8 text-center">
+                                <div class="form-group bg-info text-light rounded">
+                                    <label asp-for="TotalPrice" class="control-label">Total Cost (Tax Exclusive)</label>
+                                    <input asp-for="TotalPrice" class="form-control input-white" id="Pricing" readonly/>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 d-none">
+                                <div class="form-group bg-info text-light rounded">
+                                    <label asp-for="Status" class="control-label"></label>
+                                    <input asp-for="Status" class="form-control input-white" value="1"/>
+                                    <span asp-validation-for="Status" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <input type="submit" value="ORDER NOW" class="btn btn-black shine-btn mt-20" />
+                                @*<a class="btn btn-black shine-btn">Order Now</a>*@
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="hr-1 bg-black opacity-1 mb-30 mt-5"></div>
+                @*<div class="hr-1 bg-black opacity-1 mb-35 mt-30"></div>*@
+                <div class="book-service">
+                    <div class="row">
+                        @*<div class="col-lg-6">
+                            <div class="form-group relative">
+                                <input type="text" class="form-control input-white" id="FirstName" placeholder="First Name">
+                                <i class="far fa-user transform-v-center"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group relative">
+                                <input type="text" class="form-control input-white" id="LastName" placeholder="Last Name">
+                                <i class="far fa-user transform-v-center"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group relative">
+                                <input type="email" class="form-control input-white" id="YourEmail" placeholder="Your Email">
+                                <i class="far fa-envelope transform-v-center"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group relative">
+                                <input type="text" class="form-control input-white" id="PhoneNumber" placeholder="Phone Number">
+                                <i class="fas fa-phone transform-v-center"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group relative">
+                                <textarea class="form-control input-white light-border mb-25" name="message" id="message" cols="30" rows="7" placeholder="Your message"></textarea>
+                            </div>
+                        </div>*@
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- calculator end -->
+<!-- cta start -->
+<section class="cta-footer relative pt-35 pb-35 bg-blue">
+    <div class="container">
+        <div class="row align-items-center z-5">
+            <div class="col-lg-5 text-center text-lg-left">
+                <h2 class="white fs-40 f-700 mb-10">Get a Free Callback</h2>
+                <p class="white mb-0 fs-16">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="col-lg-7  text-center text-lg-right mt-md-15">
+                <form action="#">
+                    <div class="callback-footer-2 d-flex flex-column flex-sm-row">
+                        <input type="text" class="form-control input-white shadow-2" placeholder="Your phone numner">
+                        <a href="#" class="btn btn-black ml-20 ml-xs-00 mt-xs-15">Send Now</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <img src="img/other/clean.png" class="cta-cl-bg" alt="">
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $("#Pants").on("keyup",function(){
+                var Shirts = $("#Shirts").val();
+                var Pants = $("#Pants").val();
+                var TotalShirtPrice = Shirts * 100;
+                var TotalPantPrice = Pants * 50;
+                var TotalPrice = TotalShirtPrice + TotalPantPrice;
+                var Pricing = $("#Pricing").val(TotalPrice);
+            });
+            
+        });
+    </script>
+}

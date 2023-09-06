@@ -1,0 +1,102 @@
+﻿@model MyFirstMVC.Controllers.AdminController.OrderAndUserViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .invoice-details {
+            margin-bottom: 20px;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .invoice-table th,
+            .invoice-table td {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: left;
+            }
+
+        .invoice-footer {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-header">
+        <h1>Invoice</h1>
+        @{
+            string invoiceType;
+            if (Model.Order.InvoiceType == "1")
+            {
+                invoiceType = "Price Wise";
+            }
+            else if (Model.Order.InvoiceType == "2")
+            {
+                invoiceType = "Weight Wise";
+            }
+            else
+            {
+                invoiceType = "Package Wise";
+            }
+        }
+        <p>@(invoiceType)</p>
+    </div>
+    <div class="invoice-details">
+        <p>Bill To: @Model.User.FirstName @Model.User.LastName</p>
+        <p>Address: @Model.User.Address</p>
+        <p>Phone No: @Model.User.PhoneNumber</p>
+        <p>Email: @Model.User.Email</p>
+    </div>
+    <br />
+    <br />
+    <table class="invoice-table">
+        <thead>
+            <tr>
+                <th>Pants</th>
+                <th>Shirts</th>
+                <th>Single Pants Price</th>
+                <th>Single Shirts Price</th>
+                <th>Total Pants Price</th>
+                <th>Total Shirts Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Order.Pants</td>
+                <td>@Model.Order.Shirts</td>
+                <td>50 Pkr</td>
+                <td>100 Pkr</td>
+                @{
+                    int ShirtsValue = Model.Order.Pants * 50;
+                    int PantsValue = Model.Order.Shirts * 100;
+                }
+                <td>@(Model.Order.TotalPrice - PantsValue) Pkr</td>
+                <td>@(Model.Order.TotalPrice - ShirtsValue) Pkr</td>
+            </tr>
+            <!-- Repeat for other items -->
+        </tbody>
+    </table>
+    <div class="invoice-footer">
+        <p>Total: @Model.Order.TotalPrice Pkr</p>
+    </div>
+</body>
+</html>

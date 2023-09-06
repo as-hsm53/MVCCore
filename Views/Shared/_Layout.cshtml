@@ -1,0 +1,326 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor contextAccessor
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+
+<!-- Mirrored from metropolitanhost.com/themes/themeforest/html/pro-cleankers/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Jul 2023 13:08:03 GMT -->
+<head>
+    <title>@ViewData["Title"] - Pro Cleankers</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Calling Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/img/favicon.png">
+    <!-- Calling Favicon -->
+    <!-- ********************* -->
+    <!-- CSS files -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/nice-select.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/meanmenu.css" media="all">
+    <link rel="stylesheet" href="~/css/twentytwenty.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="~/css/default.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" class="color-changing" href="~/css/color.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <!-- End CSS files -->
+</head>
+
+<body>
+    <!-- Preloader start -->
+    <div class="loader-out flex-center">
+        <div class="loader"></div>
+    </div>
+    <!-- Preloader end -->
+    <!-- header start -->
+    <header class="head-type-1">
+        <div class="container-fluid p-0">
+            <div class="row align-items-center no-gutters">
+                <div class="col-lg-3">
+                    <div class="d-flex align-self-stretch">
+                        <div class="logo pl-35">
+                            <a href="index.html">
+                                <img src="~/img/logo/logo.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="header-1 line-after-1">
+                        <nav class="main-menu-1">
+                            <div class="d-flex justify-content-end align-items-center">
+                                <ul>
+                                    <li>
+                                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="">About<span>+</span></a>
+                                        <ul class="submenu">
+                                            <li>
+                                                <a href="about-us.html"><span></span>About Us</a>
+                                            </li>
+                                            <li>
+                                                <a href="team-1.html"><span></span>Our Team</a>
+                                            </li>
+                                            <li>
+                                                <a href="team-2.html"><span></span>Our Team 2</a>
+                                            </li>
+                                            <li>
+                                                <a href="team-details.html"><span></span>Team Details</a>
+                                            </li>
+                                            <li>
+                                                <a href="clients.html"><span></span>Partners</a>
+                                            </li>
+                                            <li>
+                                                <a href="faq.html"><span></span>Faq</a>
+                                            </li>
+                                            <li>
+                                                <a href="testimonials.html"><span></span>Testimonials</a>
+                                            </li>
+                                            <li>
+                                                <a href="pricing-1.html"><span></span>Pricing 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="pricing-2.html"><span></span>Pricing 2</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="">Services<span>+</span></a>
+                                        <ul class="submenu">
+                                            <li>
+                                                <a href="services-1.html">Services 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="services-2.html">Services 2</a>
+                                            </li>
+                                            <li>
+                                                <a href="services-details.html">Service Details</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="">Blog<span>+</span></a>
+                                        <ul class="submenu">
+                                            <li>
+                                                <a href="blog-list-standared.html">Blog List Classic</a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-list-standared-left-sidebar.html">Blog List Sidebar</a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-list-standared-no-sidebar.html">Blog List No Sidebar</a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-list-grid-1.html">Blog Grid 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-list-grid-2.html">Blog Grid 2</a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-list-grid-sidebar.html">Blog Grid Sidebar</a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-details.html">Blog Detail Image</a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-details-slider.html">Blog Detail Slider</a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-details-video.html">Blog Detail Video</a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-details-nosidebar.html">Blog Detail No Sidebar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="Orders" asp-action="Create">Order</a>
+                                    </li>
+                                </ul>
+                                @if (Context.Session.GetString("ID") != null)
+                                {
+                                    <a asp-controller="Users" asp-action="Logout" class="head-1-book-2 bg-blue ml-15 blob-small shine-btn">Logout</a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Users" asp-action="Login" class="head-1-book-2 bg-blue ml-15 blob-small shine-btn">Login</a>
+                                    <a asp-controller="Users" asp-action="Create" class="head-1-book-2 bg-blue ml-15 blob-small shine-btn">Sign Up</a>
+                                }
+                                @*<a class="head-1-book ml-15 mr-30" asp-area="" asp-controller="Users" asp-action="Create"></a>*@
+                                <div class="emergency shine-inf white px-0" style="visibility: hidden;">
+                                    <p class="f-500 z-5">Emergency</p>
+                                    <h4> <span class="text-white f-900">+123</span></h4>
+                                    <img src="~/img/icons/emergency.png" alt="">
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mobile-menu tt-index-1"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+    <!-- Main Body Start -->
+    @RenderBody()
+    
+    <!-- Main Body End -->
+    <!-- footer start -->
+    <footer class="pt-100 pb-45 z-15 footer-1" data-overlay="8" style="background-image: url('~/img/bg/footer-bg.jpg');">
+        <div class="container">
+            <div class="row z-5">
+                <div class="col-lg-4 col-md-6 mb-md-60 mb-sm-40">
+                    <div class="logo-footer mb-30">
+                        <a href="#">
+                            <img src="~/img/logo/logo2.png" alt="">
+                        </a>
+                    </div>
+                    <p class="pr-40 mb-25">Lorem ipsum dolor sit amet consectetur adipi sicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua dolor.</p>
+                    <div class="contact-footer">
+                        <ul class="">
+                            <li class="mb-10"><i class="fas fa-phone blue"></i>+123 456 7890</li>
+                            <li><i class="fas fa-envelope blue"></i>info@procleankers.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-md-60 mb-sm-40">
+                    <h3 class="fs-20 f-700 blue">Quick Links</h3>
+                    <span class="footer-lines"></span>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-double-right"></i>About Us</a></li>
+                        <li><a href="#"><i class="fas fa-angle-double-right"></i>Our Services</a></li>
+                        <li><a href="#"><i class="fas fa-angle-double-right"></i>How It Works</a></li>
+                        <li><a href="#"><i class="fas fa-angle-double-right"></i>Blogs & News</a></li>
+                        <li><a href="#"><i class="fas fa-angle-double-right"></i>Contact Us</a></li>
+                        <li><a href="#"><i class="fas fa-angle-double-right"></i>Faq</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-sm-40">
+                    <h3 class="fs-20 f-700 blue">Our Services</h3>
+                    <span class="footer-lines"></span>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-angle-double-right"></i>House Cleaning </a></li>
+                        <li><a href="#"><i class="fas fa-angle-double-right"></i>Office Cleaning </a></li>
+                        <li><a href="#"><i class="fas fa-angle-double-right"></i>After Party Cleaning </a></li>
+                        <li><a href="#"><i class="fas fa-angle-double-right"></i>Move In / Out Clean </a></li>
+                        <li><a href="#"><i class="fas fa-angle-double-right"></i>Window Cleaning</a></li>
+                        <li><a href="#"><i class="fas fa-angle-double-right"></i>Carpet Cleaning</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 text-center">
+                    <div class="footer-buttons">
+                        <a href="#" class="btn shine-btn btn-lg mb-15 btn-blue">Order Now</a>
+                        <a href="#" class="btn btn-white-border mb-15 btn-lg">Join Us</a>
+                        <a href="#" class="btn btn-white-border btn-lg">Newsletter</a>
+                    </div>
+                    <ul class="social-icons footer mt-50 white">
+                        <li>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row z-5">
+                <div class="col-lg-12">
+                    <div class="hr-2 bg-light-white mt-95 mb-40 opacity-1"></div>
+                </div>
+                <div class="col-lg-8">
+                    <p class="mb-0">© Pro Cleankers 2020 Allright Reserved</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <a href="#" class="scroll-btn bg-blue opacity-0"><i class="fas fa-arrow-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <!-- JS Files -->
+    <script src="~/js/modernizr-3.5.0.min.js"></script>
+    <script src="~/js/jquery-1.12.4.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/jquery.nice-select.min.js"></script>
+    <script src="~/js/jquery.waypoints.min.js"></script>
+    <script src="~/js/jquery.counterup.min.js"></script>
+    <script src="~/js/jquery.countdown.min.js"></script>
+    <script src="~/js/lightslider.min.js"></script>
+    <script src="~/js/wow.min.js"></script>
+    <script src="~/js/isotope.pkgd.min.js"></script>
+    <script src="~/js/jquery.meanmenu.min.js"></script>
+    <script src="~/js/tilt.jquery.min.js"></script>
+    <script src="~/js/jquery.event.move.js"></script>
+    <script src="~/js/jquery.twentytwenty.js"></script>
+    <script src="~/js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <!-- JS Files end -->
+</body>
+
+</html>
+@*<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MyFirstMVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MyFirstMVC.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyFirstMVC</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - MyFirstMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+*@
